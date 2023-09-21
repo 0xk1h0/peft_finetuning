@@ -1,0 +1,9 @@
+tqdm
+numpy
+sentencepiece
+datasets
+peft
+accelerate
+bitsandbytes
+# deepspeed
+git+https://github.com/zphang/transformers.git@llama_push
