@@ -1,0 +1,13 @@
+diff --git "a/.\\cuda_setup\\main copy.py" "b/.\\cuda_setup\\main.py"
+index ffa80ba..e8d1d0b 100644
+--- "a/.\\cuda_setup\\main copy.py"
++++ "b/.\\cuda_setup\\main.py"
+@@ -122 +122 @@ class CUDASetup:
+-                self.lib = ct.cdll.LoadLibrary(binary_path)
++                self.lib = ct.cdll.LoadLibrary(str(binary_path))
+@@ -125 +125 @@ class CUDASetup:
+-                self.lib = ct.cdll.LoadLibrary(binary_path)
++                self.lib = ct.cdll.LoadLibrary(str(binary_path))
+@@ -362,0 +363,2 @@ def evaluate_cuda_setup():
++    return 'libbitsandbytes_cudaall.dll', None, None, None, None
++
