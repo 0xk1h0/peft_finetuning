@@ -49,9 +49,9 @@ def get_peft_config(peft_args: PEFTArguments):
             r=peft_args.lora_rank,
             lora_alpha=32, lora_dropout=0.1,
             bias="none",
-            # target_modules=['qkv_proj']
-            # target_modules=['q_proj', 'v_proj']
-            # target_modules=['query_key_value']
+            # target_modules=['qkv_proj'] # llama
+            target_modules=['q_proj', 'v_proj'] # CodeGen 
+            # target_modules=['query_key_value'] # Pythia
         )
     elif peft_args.peft_mode == "prefix":
         peft_config = PrefixTuningConfig(
@@ -116,16 +116,18 @@ def main():
     )).parse_args_into_dataclasses()
     
     print("Setup Data")
-    # dataset = datasets.load_from_disk(finetune_args.dataset_path)
-    dataset_name = "/data/kiho/autocode/codegen/finetuning/llama-peft-tuner/code_segments_py150k_sanitized_20"
-    dataset = load_dataset(dataset_name, split="train")
+    try:
+    	dataset = datasets.load_from_disk(finetune_args.dataset_path)
+    except:
+	dataset_name = "./tokenized"
+	dataset = load_dataset(dataset_name, split="train")
     print("Setup Model")
     # model = transformers.LlamaForCausalLM.from_pretrained(
     model = transformers.AutoModelForCausalLM.from_pretrained(
         finetune_args.model_path,
         load_in_8bit=True,
         device_map='auto',
-        cache_dir='/data/kiho/autocode/codegen',
+        cache_dir='./codegen',
         trust_remote_code=True
     )
     
