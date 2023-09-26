@@ -1,7 +1,5 @@
 # Tune LLaMa-7B on Alpaca Dataset using PEFT / LORA
 
-Based on @zphang's [minimal-llama](https://github.com/zphang/minimal-llama) scripts. 
-
 References:
   - https://github.com/zphang/minimal-llama/#peft-fine-tuning-with-8-bit
   - https://github.com/tloen/alpaca-lora
